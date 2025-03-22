@@ -167,10 +167,10 @@ The Video Notes Generator follows a client-server architecture with clear separa
 graph TD
     Client[Client Application] -->|HTTP Requests| Server[Server API]
     Server -->|Video Processing| VideoService[Video Service]
-    Server -->|AI Processing| AIService[AI Service]
+    Server -->|OpenAI API| AIService[AI Service]
+    AIService -->|LLM Integration| GPT-4o-mini[GPT-4o-mini]
     VideoService -->|Transcription| Whisper[Whisper Model]
     VideoService -->|Screenshots| ScreenshotGen[Screenshot Generator]
-    OpenAI -->|Text Generation| GPT-4o-mini[GPT-4o-mini]
     
     subgraph "Frontend (React)"
         Client
@@ -182,8 +182,8 @@ graph TD
         AIService
         Whisper
         ScreenshotGen
+        GPT-4o-mini
     end
-    
 ```
 
 ## Key Components
