@@ -226,7 +226,7 @@ This approach ensures visual context is provided alongside the textual content, 
 ## Data Flow
 
 **Video Upload**:
-   - User uploads a video file or provides a YouTube link
+   - User uploads a video file
    - File is validated and stored on the server
    - A unique subfolder is created for all processing artifacts
 
