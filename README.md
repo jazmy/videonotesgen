@@ -42,13 +42,10 @@ Add your OpenAI API key to the .env file
     npm install
     ```
 
-3. Download and Install Whisper Language Model 
+3. Download the whisper model (148MB)
 
     ```sh
-    # First, create the models directory if it doesn't exist
-    mkdir -p ./node_modules/whisper-node/lib/whisper.cpp/models/
     
-    # Download the whisper model (141MB)
     curl -L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin -o ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
     ```
     
@@ -173,7 +170,7 @@ graph TD
     Server -->|AI Processing| AIService[AI Service]
     VideoService -->|Transcription| Whisper[Whisper Model]
     VideoService -->|Screenshots| ScreenshotGen[Screenshot Generator]
-    AIService -->|Text Generation| OpenAI[OpenAI]
+    OpenAI -->|Text Generation| GPT-4o-mini[GPT-4o-mini]
     
     subgraph "Frontend (React)"
         Client
@@ -187,9 +184,6 @@ graph TD
         ScreenshotGen
     end
     
-    subgraph "External Services"
-        ModelGateway
-    end
 ```
 
 ## Key Components
