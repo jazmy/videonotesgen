@@ -42,11 +42,17 @@ Add your OpenAI API key to the .env file
     npm install
     ```
 
-3. Install Whisper Language Model 
+3. Download and Install Whisper Language Model 
 
     ```sh
-    cp ../whispermodel/ggml-base.en.bin ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
+    # First, create the models directory if it doesn't exist
+    mkdir -p ./node_modules/whisper-node/lib/whisper.cpp/models/
+    
+    # Download the whisper model (141MB)
+    curl -L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin -o ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
     ```
+    
+    > Note: The whisper model file (ggml-base.en.bin) is over 100MB and cannot be stored in the GitHub repository. You need to download it from Hugging Face using the command above.
 
 4. Start the server:
 
@@ -296,4 +302,3 @@ If the client cannot connect to the server:
 1. Verify the server is running on port 3000
 2. Check CORS settings in `server/config/index.js`
 3. Ensure the client is configured to use the correct API endpoint (default: `http://localhost:3000`)
-
