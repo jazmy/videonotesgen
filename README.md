@@ -1,12 +1,12 @@
-# Getting Started with Video Notes Generator
+# Video Notes Generator
 
 ![Video Notes Generator Screenshot](videogenerator_screenshot.png)
 
-**Video Notes Generator** is a tool that transforms video content into structured, easy-to-navigate documentation. It’s designed to help you quickly extract and organize information from any video where knowledge is being shared — like lectures, interviews, presentations, or recorded meetings.
+**Video Notes Generator** is a tool that transforms video content into structured, easy-to-navigate documentation. It's designed to help you quickly extract and organize information from any video where knowledge is being shared — like lectures, interviews, presentations, or recorded meetings.
 
-Here’s what it does:
+Here's what it does:
 
-- **Transcribes speech** using OpenAI’s Whisper model, with accurate timestamps throughout
+- **Transcribes speech** using OpenAI's Whisper model, with accurate timestamps throughout
 - **Captures screenshots** at scene changes and embeds them directly into the notes to provide visual context
 - **Breaks down transcripts** into logical, well-structured sections to fit AI processing limits
 - **Generates content** using OpenAI models, including:
@@ -16,11 +16,9 @@ Here’s what it does:
   - A list of potential FAQs based on the video content
 - **Outputs everything** in multiple formats (Markdown, RTF, HTML), and bundles it all into a downloadable ZIP archive
 
-It’s especially useful when you want to **turn video into something you can skim, search, or repurpose** — whether that’s for study, documentation, or team knowledge sharing. 
+It's especially useful when you want to **turn video into something you can skim, search, or repurpose** — whether that's for study, documentation, or team knowledge sharing. 
 
 This software is offered free but if you find it useful then feel free to express your appreciation by [buying me a coffee](https://www.paypal.com/donate/?hosted_button_id=2ZALZKUKH6CTC)
-
-This guide will walk you through setting up the Video Notes Generator application for development and usage.
 
 ## Prerequisites
 
@@ -29,70 +27,66 @@ Before you begin, ensure you have the following installed:
 - [npm](https://www.npmjs.com/) (v6 or higher) or [yarn](https://yarnpkg.com/)
 - [OpenAI API Key](https://platform.openai.com/api-keys)
 
-# Installation Instructions
+## Installation Instructions
 
-## ENV File
+### ENV File
 
-Rename env.example to .env
-Add your OpenAI API key to the .env file
+1. Rename `env.example` to `.env`
+2. Add your OpenAI API key to the `.env` file:
+   ```
+   OPENAI_API_KEY=your_openai_api_key
+   ```
 
-## Server Setup
+### Server Setup
 
 1. Navigate to the server directory:
-
-    ```sh
-    cd server
-    ```
+   ```sh
+   cd server
+   ```
 
 2. Install the necessary dependencies:
+   ```sh
+   npm install
+   ```
 
-    ```sh
-    npm install
-    ```
-
-3. Download the whisper model (148MB)
-
-    ```sh
-    
-    curl -L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin -o ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
-    ```
-    
-    > Note: The whisper model file (ggml-base.en.bin) is over 100MB and cannot be stored in the GitHub repository. You need to download it from Hugging Face using the command above.
+3. Download the whisper model (148MB):
+   ```sh
+   curl -L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin -o ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
+   ```
+   > Note: The whisper model file (ggml-base.en.bin) is over 100MB and cannot be stored in the GitHub repository. You need to download it from Hugging Face using the command above.
 
 4. Start the server:
-
-    ```sh
-    npm start
-    ```
-
-    > Note: The first time you start the server, it will attempt to install Whisper locally.
+   ```sh
+   npm start
+   ```
+   > Note: The first time you start the server, it will attempt to install Whisper locally.
 
 ## Client Setup
 
-***Note: you will need to open a separate terminal window***
+> **Note:** You will need to open a separate terminal window
 
 1. Navigate to the client directory:
-    ```sh
-    cd client
-    ```
+   ```sh
+   cd client
+   ```
 
 2. Install the necessary dependencies:
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 3. Start the client:
-    ```sh
-    npm start
-    ```
+   ```sh
+   npm start
+   ```
 
 The application should now be running at [http://localhost:5173](http://localhost:5173).
 
-# Concepts
+## Concepts
 
 This document provides an overview of the Video Notes Generator application workflow and architecture, explaining how the different components work together to process videos and generate comprehensive notes.
 
-## Application Workflow
+### Application Workflow
 
 The Video Notes Generator follows a comprehensive end-to-end workflow to transform video content into structured notes:
 
@@ -231,28 +225,28 @@ This approach ensures visual context is provided alongside the textual content, 
 
 ## Data Flow
 
-**Video Upload**:
-   - User uploads a video file
-   - File is validated and stored on the server
-   - A unique subfolder is created for all processing artifacts
+### Video Upload
+- User uploads a video file
+- File is validated and stored on the server
+- A unique subfolder is created for all processing artifacts
 
-**Transcription**:
-   - Whisper model processes the audio to generate a raw transcript
-   - Transcript is saved as a text file
+### Transcription
+- Whisper model processes the audio to generate a raw transcript
+- Transcript is saved as a text file
 
-**AI Processing**:
-   - Transcript is sent to the OpenAI in manageable chunks
-   - AI generates structured content for different sections (summary, glossary, FAQs, etc.)
-   - Results are combined and processed
+### AI Processing
+- Transcript is sent to the OpenAI in manageable chunks
+- AI generates structured content for different sections (summary, glossary, FAQs, etc.)
+- Results are combined and processed
 
-**Document Generation**:
-   - Markdown document is created with all sections
-   - Document is converted to additional formats (RTF, HTML)
-   - Screenshots are integrated at appropriate timestamps
+### Document Generation
+- Markdown document is created with all sections
+- Document is converted to additional formats (RTF, HTML)
+- Screenshots are integrated at appropriate timestamps
 
-**Result Delivery**:
-   - All generated files are packaged into a ZIP archive
-   - Download link is provided to the user
+### Result Delivery
+- All generated files are packaged into a ZIP archive
+- Download link is provided to the user
 
 ## Storage Structure
 
@@ -277,9 +271,20 @@ docs/
 
 ## Communication Patterns
 
-- **Client-Server Communication**: RESTful API endpoints using HTTP
-- **Server-AI Communication**: Asynchronous requests to OpenAI
-- **Status Updates**: Polling mechanism to check processing status
+### Client-Server Communication
+- RESTful API endpoints using HTTP
+- JSON data format for request and response payloads
+- Authentication via API key
+
+### Server-AI Communication
+- Asynchronous requests to OpenAI API
+- Retry mechanism with exponential backoff
+- Streaming responses for real-time updates
+
+### Status Updates
+- Polling mechanism to check processing status
+- WebSocket notifications for major state changes
+- Progress indicators for long-running operations
 
 ## Troubleshooting Common Issues
 
@@ -303,97 +308,111 @@ If the client cannot connect to the server:
 3. Ensure the client is configured to use the correct API endpoint (default: `http://localhost:3000`)
 
 
-## Never setup you computer for Development? 
+## New to Development? Setup Guide for macOS
 
-Instructions for a Mac
+If you've never set up your computer for development before, follow these instructions for macOS:
 
-## **1\. System Prerequisites**
+### 1. System Prerequisites
 
-First, you need to install these fundamental tools:
+First, install these fundamental tools:
 
-**Install Homebrew** (macOS package manager):  
-/bin/bash \-c "$(curl \-fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+1. **Install Homebrew** (macOS package manager):
+   ```sh
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
 
-**Install Node.js and npm** (v14 or higher required):  
-brew install node
+2. **Install Node.js and npm** (v14 or higher required):
+   ```sh
+   brew install node
+   ```
 
-**Install Git** (for cloning the repository):  
-brew install git
+3. **Install Git** (for cloning the repository):
+   ```sh
+   brew install git
+   ```
 
-## **2\. Project Setup**
+### 2. Project Setup
 
-**Clone or download the repository**:  
-git clone \[repository-url\]
+1. **Clone or download the repository**:
+   ```sh
+   git clone [repository-url]
+   ```
+   Or download as a ZIP file and extract it
 
-Or download as a ZIP file and extract it
+2. **Navigate to the project directory**:
+   ```sh
+   cd ainotesgen
+   ```
 
-**Navigate to the project directory**:  
-cd videnotesgen
-  
-3. **Create environment file**:  
-   * Create a `.env` file in the root directory
+3. **Create environment file**:
+   - Create a `.env` file in the root directory
+   - Add OpenAI API key:
+     ```
+     OPENAI_API_KEY=your_openai_api_key
+     ```
+   - You'll need to sign up for an OpenAI account and generate an API key at [platform.openai.com](https://platform.openai.com/)
 
-Add OpenAI API key:  
-OPENAI\_API\_KEY\=your\_openai\_api\_key
+### 3. Server Setup
 
-*   
-  * The user would need to sign up for an OpenAI account and generate an API key at [platform.openai.com](https://platform.openai.com/)
+1. **Install server dependencies**:
+   ```sh
+   cd server
+   npm install
+   ```
 
-## **3\. Server Setup**
+2. **Download the Whisper model** (148MB):
+   ```sh
+   curl -L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin -o ./node_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
+   ```
+   - This step is crucial as the model file is too large for GitHub and must be downloaded separately
+   - If the directory doesn't exist, create it:
+     ```sh
+     mkdir -p ./node_modules/whisper-node/lib/whisper.cpp/models/
+     ```
 
-**Install server dependencies**:  
-cd server  
-npm install
+3. **Start the server**:
+   ```sh
+   npm start
+   ```
+   - The server will run on port 3000 by default
+   - First-time startup will include Whisper model initialization
 
-**Download the Whisper model** (148MB):  
-curl \-L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin \-o ./node\_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
-  
-   * This step is crucial as the model file is too large for GitHub and must be downloaded separately
+### 4. Client Setup
 
-If the directory doesn't exist, they may need to create it:  
-mkdir \-p ./node\_modules/whisper-node/lib/whisper.cpp/models/
+1. **Open a new terminal window**
 
-**Start the server**:  
-npm start
-  
-   * The server will run on port 3000 by default  
-   * First-time startup will include Whisper model initialization
+2. **Install client dependencies**:
+   ```sh
+   cd client
+   npm install
+   ```
 
-## **4\. Client Setup**
+3. **Start the client**:
+   ```sh
+   npm start
+   ```
+   - The client will run on port 5173 by default
+   - Access the application at [http://localhost:5173](http://localhost:5173/)
 
-**Open a new terminal window**
+### 5. Additional macOS-Specific Considerations
 
-**Install client dependencies**:  
-cd client  
-npm install
+1. **FFMPEG Installation**:
+   - The application uses FFMPEG for video processing
+   - While the package.json includes FFMPEG dependencies, if there are issues, install it manually:
+     ```sh
+     brew install ffmpeg
+     ```
 
-**Start the client**:  
-npm start
+2. **File Permissions**:
+   - macOS may prompt for permissions when accessing video files
+   - Grant necessary permissions when prompted
 
-  * The client will run on port 5173 by default  
-   * Access the application at [http://localhost:5173](http://localhost:5173/)
+3. **Network Access**:
+   - Allow network access for both client and server applications if macOS firewall prompts
 
-## **5\. Additional macOS-Specific Considerations**
-
- **FFMPEG Installation**:  
-   * The application uses FFMPEG for video processing
-
-While the package.json includes FFMPEG dependencies, if there are issues, the user might need to install it manually:  
-
-brew install ffmpeg
- 
-**File Permissions**:  
-
-   * macOS may prompt for permissions when accessing video files  
-   * The user should grant necessary permissions when prompted  
-
- **Network Access**:  
-
-   * Allow network access for both client and server applications if macOS firewall prompts
-     
-**Storage Requirements**:  
-   * Ensure at least 500MB of free space for the application and its dependencies  
-   * Additional space needed for video processing (varies based on video size)
+4. **Storage Requirements**:
+   - Ensure at least 500MB of free space for the application and its dependencies
+   - Additional space needed for video processing (varies based on video size)
 
 
 ## Disclaimer
