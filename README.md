@@ -2,26 +2,34 @@
 
 ![Video Notes Generator Screenshot](videogenerator_screenshot.png)
 
-This guide will walk you through setting up the Video Notes Generator application for development and usage.
+**Video Notes Generator** is a tool that transforms video content into structured, easy-to-navigate documentation. It’s designed to help you quickly extract and organize information from any video where knowledge is being shared — like lectures, interviews, presentations, or recorded meetings.
 
+Here’s what it does:
+
+- **Transcribes speech** using OpenAI’s Whisper model, with accurate timestamps throughout
+- **Captures screenshots** at scene changes and embeds them directly into the notes to provide visual context
+- **Breaks down transcripts** into logical, well-structured sections to fit AI processing limits
+- **Generates content** using OpenAI models, including:
+  - A detailed notes summary with timestamps
+  - A TL;DR-style overview
+  - A glossary of technical terms
+  - A list of potential FAQs based on the video content
+- **Outputs everything** in multiple formats (Markdown, RTF, HTML), and bundles it all into a downloadable ZIP archive
+
+It’s especially useful when you want to **turn video into something you can skim, search, or repurpose** — whether that’s for study, documentation, or team knowledge sharing. 
+
+This software is offered free but if you find it useful then feel free to express your appreciation by [buying me a coffee](https://www.paypal.com/donate/?hosted_button_id=2ZALZKUKH6CTC)
+
+This guide will walk you through setting up the Video Notes Generator application for development and usage.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - [npm](https://www.npmjs.com/) (v6 or higher) or [yarn](https://yarnpkg.com/)
-
+- [OpenAI API Key](https://platform.openai.com/api-keys)
 
 # Installation Instructions
-
-## Download the code
-
-```sh
-git clone 
-
-```
-
-or download it as a zip
 
 ## ENV File
 
@@ -79,7 +87,6 @@ Add your OpenAI API key to the .env file
     ```
 
 The application should now be running at [http://localhost:5173](http://localhost:5173).
-
 
 # Concepts
 
@@ -157,7 +164,6 @@ The Video Notes Generator follows a comprehensive end-to-end workflow to transfo
 - The user can download the complete package or view individual files
 
 This automated workflow transforms a video into comprehensive, structured notes with minimal user intervention, making it an efficient tool for knowledge extraction and documentation.
-
 
 ## System Architecture
 
@@ -275,7 +281,6 @@ docs/
 - **Server-AI Communication**: Asynchronous requests to OpenAI
 - **Status Updates**: Polling mechanism to check processing status
 
-
 ## Troubleshooting Common Issues
 
 ### Whisper Model Installation
@@ -296,3 +301,105 @@ If the client cannot connect to the server:
 1. Verify the server is running on port 3000
 2. Check CORS settings in `server/config/index.js`
 3. Ensure the client is configured to use the correct API endpoint (default: `http://localhost:3000`)
+
+
+## Never setup you computer for Development? 
+
+Instructions for a Mac
+
+## **1\. System Prerequisites**
+
+First, you need to install these fundamental tools:
+
+**Install Homebrew** (macOS package manager):  
+/bin/bash \-c "$(curl \-fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+**Install Node.js and npm** (v14 or higher required):  
+brew install node
+
+**Install Git** (for cloning the repository):  
+brew install git
+
+## **2\. Project Setup**
+
+**Clone or download the repository**:  
+git clone \[repository-url\]
+
+Or download as a ZIP file and extract it
+
+**Navigate to the project directory**:  
+cd videnotesgen
+  
+3. **Create environment file**:  
+   * Create a `.env` file in the root directory
+
+Add OpenAI API key:  
+OPENAI\_API\_KEY\=your\_openai\_api\_key
+
+*   
+  * The user would need to sign up for an OpenAI account and generate an API key at [platform.openai.com](https://platform.openai.com/)
+
+## **3\. Server Setup**
+
+**Install server dependencies**:  
+cd server  
+npm install
+
+**Download the Whisper model** (148MB):  
+curl \-L https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.en.bin \-o ./node\_modules/whisper-node/lib/whisper.cpp/models/ggml-base.en.bin
+  
+   * This step is crucial as the model file is too large for GitHub and must be downloaded separately
+
+If the directory doesn't exist, they may need to create it:  
+mkdir \-p ./node\_modules/whisper-node/lib/whisper.cpp/models/
+
+**Start the server**:  
+npm start
+  
+   * The server will run on port 3000 by default  
+   * First-time startup will include Whisper model initialization
+
+## **4\. Client Setup**
+
+**Open a new terminal window**
+
+**Install client dependencies**:  
+cd client  
+npm install
+
+**Start the client**:  
+npm start
+
+  * The client will run on port 5173 by default  
+   * Access the application at [http://localhost:5173](http://localhost:5173/)
+
+## **5\. Additional macOS-Specific Considerations**
+
+ **FFMPEG Installation**:  
+   * The application uses FFMPEG for video processing
+
+While the package.json includes FFMPEG dependencies, if there are issues, the user might need to install it manually:  
+
+brew install ffmpeg
+ 
+**File Permissions**:  
+
+   * macOS may prompt for permissions when accessing video files  
+   * The user should grant necessary permissions when prompted  
+
+ **Network Access**:  
+
+   * Allow network access for both client and server applications if macOS firewall prompts
+     
+**Storage Requirements**:  
+   * Ensure at least 500MB of free space for the application and its dependencies  
+   * Additional space needed for video processing (varies based on video size)
+
+
+## Disclaimer
+
+This software is provided free of charge for personal and non-commercial use. You are permitted to use, modify, and share it only with proper credit to the original author (me). Commercial use, resale, or redistribution for profit is strictly prohibited without prior written permission.
+
+This software is provided "as is", without any warranties—express or implied. I do not accept any responsibility for any issues, damages, or legal consequences resulting from the use or misuse of this software.
+
+By using this software, you agree to these terms.
