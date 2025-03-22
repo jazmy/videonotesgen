@@ -1,0 +1,53 @@
+{
+  "name": "dochelperjaz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node-dev --no-notify --no-deps --ignore 'docs/**/*' app.js",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "archiver": "^6.0.1",
+    "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "docx": "^8.5.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.0",
+    "ffmpeg-static": "^5.2.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "formidable": "^3.5.1",
+    "fs": "^0.0.1-security",
+    "helmet": "^7.2.0",
+    "html-to-rtf": "^2.1.0",
+    "markdown-it": "^14.0.0",
+    "marked": "^12.0.2",
+    "mdurl": "^2.0.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "nodejs-whisper": "^0.1.6",
+    "openai": "^4.28.0",
+    "pptxgenjs": "^3.12.0",
+    "sharp": "^0.33.1",
+    "shelljs": "^0.8.5",
+    "utf8": "^3.0.0",
+    "whisper-node": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
+    "@types/formidable": "^3.4.4",
+    "@types/node": "18.11.3",
+    "@types/node-fetch": "^2.6.7",
+    "@types/utf8": "^3.0.3",
+    "@types/uuid": "^9.0.6",
+    "node-dev": "^8.0.0"
+  }
+}

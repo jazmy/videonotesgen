@@ -1,0 +1,39 @@
+(00:00:00) are free API keys from open router dot AI, and then we're going to plug them in to
+(00:00:05) pair, and I'm going to show you how to configure keys. So again, it's just open router dot AI, and
+(00:00:10) then you're going to go right over here to sign in, you will sign up right here. And I'm just going to hit my
+(00:00:15) Google account. Now I'm all signed in right here. And the first thing I want to do is see what models I can do for free.
+(00:00:20) And so you're just going to go right up here to models and then hit this filter and you're going to type in free. And it's important that
+(00:00:25) you know this because this is going to be something that you should know whenever you poured it into another tool, because it's always going to auto
+(00:00:30) populate and you're going to have to know how to get to the free ones. And you can see that they're tagged free free free. The next thing
+(00:00:35) you're going to want to do is you're going to come right up here to your profile and you're going to want to come to keys. And then you're going to want to create a key
+(00:00:40) and then name it something like pair AI or something like that. And then you're going to want to copy it down and put it into a not epad so
+(00:00:45) you don't forget it because you can't see it again. Then what you want to do is you want to go right up here to docs because
+(00:00:50) you're going to need to find this base URL right here. So now you have your key and your base URL you want to
+(00:00:55) do is you just going to come right over here to pair and you're going to chat wherever your chats open and then you want
+(00:01:00) to drop down your model list and you want to add model pretty simple. Then you want to open your config. json
+(00:01:05) file and it should open up in your pair and look just like this. Whatever model you decide to put
+(00:01:10) in there. It's not like it auto pop ulates. It just auto pop ulates in your config file. So you need to learn how to do that. This is different
+(00:01:15) than cursor but you're going to come right over here. We're going to go to open. Actually, I believe they have an open router here
+(00:01:20) . Let's look for it. I thought they did they don't but it's just open AI compatible URL and then you're
+(00:01:25) going to want to hit auto detect and we're going to scroll down so you can kind of see but it should just populate in here. I'm going to hit
+(00:01:30) auto detect right here and let's look for the population. You can see it just populated right here.
+(00:01:35) So notice how it says auto detect that means that every single model that comes over here is just going
+(00:01:40) to pull strict directly into pairs so you don't actually have to manually hot swap anymore and this is actually
+(00:01:45) what's really cool about pair. So I'll show you how to fill this out. You'll notice that you have an API base URL. We're
+(00:01:50) going to go plug that in. Again, if you come right up here to the docs right here and then you go right here. Here
+(00:01:55) 's your base URL. So let's just grab that and plug that in there right here. Copy, go back. I'm just
+(00:02:00) going to get rid of it right here and I'm going to paste just like that.
+(00:02:05) The next thing you want to do is just hit shift enter and then you're going to hit quotes like this and then
+(00:02:10) you're going to select the API key and then we're going to go get the API key. Again, it's just right up here. Go here
+(00:02:15) keys. Hopefully you made one. If not, you'll create it. We will go here and just type in pair and
+(00:02:20) then we'll grab our API key. I'll go ahead and delete this whenever it
+(00:02:25) 's done and we're just going to go ahead and control V right here. Here's our pair
+(00:02:30) API key. Our provider is open AI. Remember, we did open AI compatibility. It's not open router
+(00:02:35) . It's open AI, but you can change this title. So it shows up in your pair chat like differently. So I'll do
+(00:02:40) you notice how I just did open router and you'll see what I mean here in a second. So it should look just like this
+(00:02:45) and you're just going to hit control S for save. You don't have an auto saved and then over here in your pair chat,
+(00:02:50) you'll notice that all the open routers are here. See, all of them, it pulled all of them, but you
+(00:02:55) don't know which ones are free. But remember how I said that you have to learn to find the free ones. Well, they always come
+(00:03:00) right at the end of the tail here free. You can see which is free here and you should be able to actually
+(00:03:05) search for the free model that you want. You end up using the metal ll ama 3. 18 B instruct free
+(00:03:10) . You just have to go around. You You might have to find the models, but.
