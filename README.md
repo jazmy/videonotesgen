@@ -2,6 +2,10 @@
 
 ![Video Notes Generator Screenshot](videogenerator_screenshot.png)
 
+[GenAI Secret Sauce - Article about Project](https://genaisecretsauce.com/genai-secret-sauce-for-notes-from-videos/)
+
+[Installation Tutorial (6 mins)](https://www.youtube.com/watch?v=5biFFQVK4f0)
+
 **Video Notes Generator** is a tool that transforms video content into structured, easy-to-navigate documentation. It's designed to help you quickly extract and organize information from any video where knowledge is being shared — like lectures, interviews, presentations, or recorded meetings.
 
 Here's what it does:
